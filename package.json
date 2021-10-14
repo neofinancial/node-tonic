@@ -1,0 +1,44 @@
+{
+  "name": "node-tonic",
+  "version": "0.0.1",
+  "description": "tonic.ai API wrapper for Node.js",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rimraf build",
+    "clean:modules": "rimraf node_modules",
+    "lint": "eslint \"**/*.{ts,js}\"",
+    "format": "prettier --write \"**/*.{ts,js,json,yaml,yml,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,yaml,yml,md}\"",
+    "prepublishOnly": "rimraf build && tsc",
+    "generate:types": "npx openapi-typescript https://app.tonic.ai/swagger/v1/swagger.json --output ./src/types/tonic.types.ts"
+  },
+  "author": "Neo Financial Engineering <engineering@neofinancial.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^26.0.14",
+    "@types/node": "^14.11.10",
+    "@types/qs": "^6.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^7.11.0",
+    "eslint-config-neo": "^0.6.2",
+    "eslint-plugin-jest": "^25.2.0",
+    "husky": "^4.3.0",
+    "jest": "^27.2.5",
+    "lint-staged": "^10.4.2",
+    "openapi-typescript": "^4.3.0",
+    "prettier": "^2.0.0",
+    "ts-jest": "^27.0.5",
+    "ts-node": "^9.0.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "axios": "^0.23.0",
+    "qs": "^6.10.1"
+  }
+}
