@@ -1,6 +1,8 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from './configuration';
+import { userSettingsApi } from './user-settings-api/user-settings-api';
+import { UserSettingsRequestModel, UserSettingsResponseModel } from './user-settings-api/user-settings-api.types';
 import { versionApi } from './version-api/version.api';
 import { collectionApi } from './collection-api/collection.api';
 import { Table } from './collection-api/collection.api.types';
@@ -29,6 +31,19 @@ class Tonic {
   public getCollectionNames(workspaceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<string>> {
     return collectionApi(this.configuration)
       .getCollectionNames({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  //User Settings
+  public getUserSettings(options?: AxiosRequestConfig): AxiosPromise<UserSettingsResponseModel> {
+    return userSettingsApi(this.configuration)
+      .getUserSettings(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public updateUserSettings(params: UserSettingsRequestModel, options?: AxiosRequestConfig): AxiosPromise<UserSettingsResponseModel> {
+    return userSettingsApi(this.configuration)
+      .updateUserSettings(params, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
