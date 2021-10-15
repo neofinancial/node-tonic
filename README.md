@@ -1,4 +1,4 @@
-# Node Tonic.AI
+# Node Tonic
 
 [![Build status](https://github.com/neofinancial/node-tonic/workflows/CI/badge.svg)](https://github.com/neofinancial/node-tonic/actions)
 

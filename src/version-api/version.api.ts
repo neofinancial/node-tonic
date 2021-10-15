@@ -35,4 +35,4 @@ const versionApi = (configuration: Configuration): VersionAPI => {
   };
 };
 
-export { versionApi };
+export { versionApi, versionApiRequestArgsCreator };
