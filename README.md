@@ -45,8 +45,8 @@ Here is a list of all the Tonic.ai API endpoints along with the corresponding li
 | `/Auth/apikeys`                                                 | Not Implemented |
 | `/Auth/apikeys/{id}`                                            | Not Implemented |
 | _Collection_                                                    |
-| `/Collection`                                                   | Not Implemented |
-| `/Collection/full`                                              | Not Implemented |
+| `/Collection`                                                   | getCollectionNames |
+| `/Collection/full`                                              | getCollections |
 | _Comments_                                                      |
 | `/Comments`                                                     | Not Implemented |
 | `/Comments/{commentId}`                                         | Not Implemented |
