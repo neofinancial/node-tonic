@@ -91,7 +91,7 @@ Here is a list of all the Tonic.ai API endpoints along with the corresponding li
 | _Users_                                                         |
 | `/Users`                                                        | Not Implemented    |
 | _UserSettings_                                                  |
-| `/UserSettings`                                                 | Not Implemented    |
+| `/UserSettings`                                                 | getUserSettings, updateUserSettings |
 | _Version_                                                       |
 | `/Version`                                                      | getVersion         |
 | _Webhook_                                                       |
