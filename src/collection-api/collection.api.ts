@@ -81,4 +81,4 @@ const collectionApi = (configuration: Configuration): CollectionAPI => {
   };
 };
 
-export { collectionApi, collectionApiRequestArgsCreator }
+export { collectionApi, collectionApiRequestArgsCreator };

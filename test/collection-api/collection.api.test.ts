@@ -6,7 +6,6 @@ import { collectionApi, collectionApiRequestArgsCreator } from '../../src/collec
 import { Configuration } from '../../src/configuration';
 
 describe('collection-api', () => {
-
   describe('collectionApiRequestArgsCreator', () => {
     const config: Configuration = {
       apiKey: 'test-api-key',
@@ -14,8 +13,8 @@ describe('collection-api', () => {
     };
 
     const defaultParams = {
-      workspaceId: 'workspace-id'
-    }
+      workspaceId: 'workspace-id',
+    };
 
     describe('getCollectionsRequestArgs', () => {
       it('should return /api/Collection/full for url', async () => {
@@ -43,7 +42,7 @@ describe('collection-api', () => {
 
         expect(args.options).toEqual({ headers: { Authorization: config.apiKey }, method: 'GET' });
       });
-    })
+    });
   });
 
   describe('collectionApi', () => {
@@ -53,8 +52,8 @@ describe('collection-api', () => {
     };
 
     const defaultParams = {
-      workspaceId: 'workspace-id'
-    }
+      workspaceId: 'workspace-id',
+    };
 
     describe('getCollections', () => {
       const defaultRequestParameters = {
@@ -94,5 +93,4 @@ describe('collection-api', () => {
       });
     });
   });
-
-})
+});
