@@ -47,7 +47,6 @@ const collectionApiRequestArgsCreator = (configuration: Configuration): Collecti
 
 const collectionApi = (configuration: Configuration): CollectionAPI => {
   return {
-    // gets an Array of Table objects for each collection in a workspace
     async getCollections(
       params: GetCollectionFullQueryParameters,
       options?: AxiosRequestConfig
@@ -64,7 +63,6 @@ const collectionApi = (configuration: Configuration): CollectionAPI => {
       };
     },
 
-    // gets a list of names for each collection in a workspace
     async getCollectionNames(
       params: GetCollectionQueryParameters,
       options?: AxiosRequestConfig

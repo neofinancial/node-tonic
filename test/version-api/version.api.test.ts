@@ -20,7 +20,7 @@ describe('versionApiRequestArgsCreator', () => {
     it('should use apiKey from configuration in options', async () => {
       const args = await versionApiRequestArgsCreator(config).getVersionRequestArgs();
 
-      expect(args.options).toBe({ headers: { Authorization: config.apiKey }, method: 'GET' });
+      expect(args.options).toEqual({ headers: { Authorization: config.apiKey }, method: 'GET' });
     });
   });
 });
