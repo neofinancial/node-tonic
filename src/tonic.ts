@@ -1,14 +1,14 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from './configuration';
-import { VersionApi } from './Version/version.api';
+import { versionApi } from './version-api/version.api';
 
 export interface RequestArgs {
   url: string;
   options: AxiosRequestConfig;
 }
 
-export class TonicAPI {
+class Tonic {
   protected configuration: Configuration;
   protected basePath: string;
 
@@ -19,8 +19,11 @@ export class TonicAPI {
 
   // Version
   public getVersion(options?: AxiosRequestConfig): AxiosPromise<number> {
-    return VersionApi(this.configuration)
+    return versionApi(this.configuration)
       .getVersion(options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
+
+export default Tonic;
+export { Tonic };

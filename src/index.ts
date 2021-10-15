@@ -1,3 +1,3 @@
-import { TonicAPI } from './api';
+import { Tonic } from './tonic';
 
-export default TonicAPI;
+export default Tonic;

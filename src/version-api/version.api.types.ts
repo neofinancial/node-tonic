@@ -1,6 +1,6 @@
 import { AxiosRequestConfig, AxiosInstance, AxiosPromise } from 'axios';
 
-import { RequestArgs } from '../api';
+import { RequestArgs } from '../tonic';
 
 export type VersionAPI = {
   getVersion: (

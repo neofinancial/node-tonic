@@ -2,7 +2,7 @@ import { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 import { Configuration } from '../configuration';
 
-export const getRequestOptionsWithApiKey = async (
+const getRequestOptionsWithApiKey = async (
   method: 'GET' | 'POST' | 'DELETE' | 'PUT' | 'PATCH',
   configuration: Configuration,
   options: AxiosRequestConfig = {}
@@ -13,14 +13,9 @@ export const getRequestOptionsWithApiKey = async (
 
   const requestOptions = { method, ...baseOptions, ...options };
 
-  if (configuration?.apiKey) {
-    const requestApiKeyValue =
-      typeof configuration.apiKey === 'function'
-        ? await configuration.apiKey('Authorization')
-        : await configuration.apiKey;
+  const requestApiKeyValue = await configuration.apiKey;
 
-    requestHeaderParameter['Authorization'] = requestApiKeyValue;
-  }
+  requestHeaderParameter['Authorization'] = requestApiKeyValue;
 
   const headersFromBaseOptions = baseOptions?.headers ?? {};
 
@@ -28,3 +23,5 @@ export const getRequestOptionsWithApiKey = async (
 
   return requestOptions;
 };
+
+export { getRequestOptionsWithApiKey };

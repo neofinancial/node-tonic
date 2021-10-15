@@ -2,20 +2,20 @@
 
 [![Build status](https://github.com/neofinancial/node-tonic/workflows/CI/badge.svg)](https://github.com/neofinancial/node-tonic/actions)
 
-A Tonic.AI API wrapper for Node.js
+A Tonic API wrapper for Node.js
 
 ## Usage
 
 ### Installation
 
-`npm install add node-tonic` or `yarn add node-tonic`
+`npm install node-tonic` or `yarn add node-tonic`
 
 ### Creating a client
 
 ```ts
-import TonicAPI from 'node-tonic';
+import Tonic from 'node-tonic';
 
-const tonic = new TonicAPI({
+const tonic = new Tonic({
   apiKey: 'XXXXXXXX', // your API key
   basePath: 'https://base-tonic-url', // base api url
 });
@@ -138,4 +138,5 @@ If you need to clear the build cache run `npm run clean`
 1. Add a `CHANGELOG` entry
 1. Add reference for new method(s) in this file in the API section
 1. Commit your changes
-1. TODO: Finish these instructions
+1. Run `npm pack --dry-run` to see what will be published
+1. Run `npm publish`

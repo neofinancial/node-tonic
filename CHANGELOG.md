@@ -1,6 +1,6 @@
 ## Node Tonic Changelog
 
-## 0.0.1 (October 14, 2021)
+## 0.1.0 (October 14, 2021)
 
 Pre release
 
