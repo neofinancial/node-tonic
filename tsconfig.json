@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2019",
+    "lib": ["es2019", "es2020.bigint", "es2020.string", "es2020.symbol.wellknown"],
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "build",
+    "baseUrl": "src",
+    "paths": {
+      "*": ["*", "node_modules/*", "src/*"]
+    }
+  },
+  "include": ["src/**/*", "samples"]
+}
