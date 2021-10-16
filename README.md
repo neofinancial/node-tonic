@@ -33,86 +33,86 @@ npm run generate:types
 
 Here is a list of all the Tonic.ai API endpoints along with the corresponding library method. We have not yet implemented all the endpoints in the Tonic REST API. If an endpoint you need is missing please consider submitting a pull request. Reference for the endpoints is available in the [API docs](https://app.tonic.ai/apidocs/index.html).
 
-| Endpoint                                                        | Client Method      |
-| --------------------------------------------------------------- | ------------------ |
+| Endpoint                                                        | Client Method                       |
+| --------------------------------------------------------------- | ----------------------------------- |
 | _Accounts_                                                      |
-| `/accounts/passwordchange`                                      | Not Implemented    |
-| `/accounts/passwordreset`                                       | Not Implemented    |
-| `/Accounts`                                                     | Not Implemented    |
+| `/accounts/passwordchange`                                      | Not Implemented                     |
+| `/accounts/passwordreset`                                       | Not Implemented                     |
+| `/Accounts`                                                     | Not Implemented                     |
 | _Auth_                                                          |
-| `/Auth/login`                                                   | Not Implemented    |
-| `/Auth/token_refresh`                                           | Not Implemented    |
-| `/Auth/apikeys`                                                 | Not Implemented    |
-| `/Auth/apikeys/{id}`                                            | Not Implemented    |
+| `/Auth/login`                                                   | Not Implemented                     |
+| `/Auth/token_refresh`                                           | Not Implemented                     |
+| `/Auth/apikeys`                                                 | Not Implemented                     |
+| `/Auth/apikeys/{id}`                                            | Not Implemented                     |
 | _Collection_                                                    |
-| `/Collection`                                                   | getCollectionNames |
-| `/Collection/full`                                              | getCollections     |
+| `/Collection`                                                   | getCollectionNames                     |
+| `/Collection/full`                                              | getCollections                     |
 | _Comments_                                                      |
-| `/Comments`                                                     | Not Implemented    |
-| `/Comments/{commentId}`                                         | Not Implemented    |
+| `/Comments`                                                     | Not Implemented                     |
+| `/Comments/{commentId}`                                         | Not Implemented                     |
 | _DataSource_                                                    |
-| `/DataSource`                                                   | Not Implemented    |
-| `/DataSource/minimal`                                           | Not Implemented    |
-| `/DataSource/source_db`                                         | Not Implemented    |
-| `/DataSource/destination_db`                                    | Not Implemented    |
-| `/DataSource/spark_connection_info`                             | Not Implemented    |
-| `/DataSource/delete_fkupload`                                   | Not Implemented    |
-| `/DataSource/delete_clientkey`                                  | Not Implemented    |
-| `/DataSource/delete_clientcert`                                 | Not Implemented    |
-| `/DataSource/delete_rootcert`                                   | Not Implemented    |
-| `/DataSource/delete_gbqserviceaccount`                          | Not Implemented    |
+| `/DataSource`                                                   | Not Implemented                     |
+| `/DataSource/minimal`                                           | Not Implemented                     |
+| `/DataSource/source_db`                                         | Not Implemented                     |
+| `/DataSource/destination_db`                                    | Not Implemented                     |
+| `/DataSource/spark_connection_info`                             | Not Implemented                     |
+| `/DataSource/delete_fkupload`                                   | Not Implemented                     |
+| `/DataSource/delete_clientkey`                                  | Not Implemented                     |
+| `/DataSource/delete_clientcert`                                 | Not Implemented                     |
+| `/DataSource/delete_rootcert`                                   | Not Implemented                     |
+| `/DataSource/delete_gbqserviceaccount`                          | Not Implemented                     |
 | _GenerateData_                                                  |
-| `/GenerateData`                                                 | Not Implemented    |
-| `/GenerateData/jobs/{databaseScanId}`                           | Not Implemented    |
-| `/GenerateData/start`                                           | Not Implemented    |
-| `/GenerateData/cancel`                                          | Not Implemented    |
+| `/GenerateData`                                                 | Not Implemented                     |
+| `/GenerateData/jobs/{databaseScanId}`                           | Not Implemented                     |
+| `/GenerateData/start`                                           | Not Implemented                     |
+| `/GenerateData/cancel`                                          | Not Implemented                     |
 | _Groups_                                                        |
-| `/Groups`                                                       | Not Implemented    |
-| `/Groups/cleanup`                                               | Not Implemented    |
+| `/Groups`                                                       | Not Implemented                     |
+| `/Groups/cleanup`                                               | Not Implemented                     |
 | _PiiReport_                                                     |
-| `/PiiReport/most_recent_active_or_completed_status`             | Not Implemented    |
-| `/PiiReport/cancel`                                             | Not Implemented    |
-| `/PiiReport/start`                                              | Not Implemented    |
-| `/PiiReport`                                                    | Not Implemented    |
+| `/PiiReport/most_recent_active_or_completed_status`             | Not Implemented                     |
+| `/PiiReport/cancel`                                             | Not Implemented                     |
+| `/PiiReport/start`                                              | Not Implemented                     |
+| `/PiiReport`                                                    | Not Implemented                     |
 | _Privacy_                                                       |
-| `/Privacy/history`                                              | Not Implemented    |
-| `/Privacy/privacyforcolumns`                                    | Not Implemented    |
-| `/Privacy/piitypeforcolumns`                                    | Not Implemented    |
-| `/Privacy/ignore`                                               | Not Implemented    |
-| `/Privacy/set`                                                  | Not Implemented    |
-| `/Privacy/suggestions`                                          | Not Implemented    |
+| `/Privacy/history`                                              | Not Implemented                     |
+| `/Privacy/privacyforcolumns`                                    | Not Implemented                     |
+| `/Privacy/piitypeforcolumns`                                    | Not Implemented                     |
+| `/Privacy/ignore`                                               | Not Implemented                     |
+| `/Privacy/set`                                                  | Not Implemented                     |
+| `/Privacy/suggestions`                                          | Not Implemented                     |
 | _SchemaDiff_                                                    |
-| `/SchemaDiff`                                                   | Not Implemented    |
-| `/SchemaDiff/resolve`                                           | Not Implemented    |
-| `/SchemaDiff/resolve_multiple`                                  | Not Implemented    |
+| `/SchemaDiff`                                                   | Not Implemented                     |
+| `/SchemaDiff/resolve`                                           | Not Implemented                     |
+| `/SchemaDiff/resolve_multiple`                                  | Not Implemented                     |
 | _Table_                                                         |
-| `/Table`                                                        | Not Implemented    |
-| `/Table/relationships`                                          | Not Implemented    |
+| `/Table`                                                        | Not Implemented                     |
+| `/Table/relationships`                                          | Not Implemented                     |
 | _Users_                                                         |
-| `/Users`                                                        | Not Implemented    |
+| `/Users`                                                        | Not Implemented                     |
 | _UserSettings_                                                  |
 | `/UserSettings`                                                 | getUserSettings, updateUserSettings |
 | _Version_                                                       |
-| `/Version`                                                      | getVersion         |
+| `/Version`                                                      | getVersion                          |
 | _Webhook_                                                       |
-| `/Webhook`                                                      | Not Implemented    |
-| `/Webhook/{webhookId}`                                          | Not Implemented    |
-| `/Webhook/test`                                                 | Not Implemented    |
+| `/Webhook`                                                      | Not Implemented                     |
+| `/Webhook/{webhookId}`                                          | Not Implemented                     |
+| `/Webhook/test`                                                 | Not Implemented                     |
 | _Workspace_                                                     |
-| `/Workspace`                                                    | Not Implemented    |
-| `/Workspace/{workspaceId}/status`                               | Not Implemented    |
-| `/Workspace/{workspaceId}`                                      | Not Implemented    |
-| `/Workspace/{workspaceId}/replacements/{schema}/{table}`        | Not Implemented    |
-| `/Workspace/{workspaceId}/update_replacements/{schema}/{table}` | Not Implemented    |
-| `/Workspace/{workspaceId}/rename`                               | Not Implemented    |
-| `/Workspace/{workspaceId}/transfer`                             | Not Implemented    |
-| `/Workspace/{workspaceId}/copy`                                 | Not Implemented    |
-| `/Workspace/{workspaceId}/{schema}/{table}`                     | Not Implemented    |
-| `/Workspace/{workspaceId}/bulk_table_mode`                      | Not Implemented    |
-| `/Workspace/{workspaceId}/shares`                               | Not Implemented    |
-| `/Workspace/{workspaceId}/shares/{workspaceShareId}`            | Not Implemented    |
-| `/Workspace/{workspaceId}/users`                                | Not Implemented    |
-| `/Workspace/{workspaceId}/subset`                               | Not Implemented    |
+| `/Workspace`                                                    | Not Implemented                     |
+| `/Workspace/{workspaceId}/status`                               | Not Implemented                     |
+| `/Workspace/{workspaceId}`                                      | Not Implemented                     |
+| `/Workspace/{workspaceId}/replacements/{schema}/{table}`        | Not Implemented                     |
+| `/Workspace/{workspaceId}/update_replacements/{schema}/{table}` | Not Implemented                     |
+| `/Workspace/{workspaceId}/rename`                               | Not Implemented                     |
+| `/Workspace/{workspaceId}/transfer`                             | Not Implemented                     |
+| `/Workspace/{workspaceId}/copy`                                 | Not Implemented                     |
+| `/Workspace/{workspaceId}/{schema}/{table}`                     | Not Implemented                     |
+| `/Workspace/{workspaceId}/bulk_table_mode`                      | Not Implemented                     |
+| `/Workspace/{workspaceId}/shares`                               | Not Implemented                     |
+| `/Workspace/{workspaceId}/shares/{workspaceShareId}`            | Not Implemented                     |
+| `/Workspace/{workspaceId}/users`                                | Not Implemented                     |
+| `/Workspace/{workspaceId}/subset`                               | Not Implemented                     |
 
 ## Contributing
 

@@ -28,7 +28,7 @@ describe('user-settings-api', () => {
 
     describe('updateUserSettingsRequestArgs', () => {
       const defaultParams: UserSettingsRequestModel = {
-        notificationLevelPreference: 'All'
+        notificationLevelPreference: 'All',
       };
 
       it('should return /api/UserSettings for url', async () => {
@@ -43,7 +43,7 @@ describe('user-settings-api', () => {
         expect(args.options).toEqual({
           headers: { Authorization: config.apiKey, 'Content-Type': 'application/json' },
           method: 'POST',
-          data: JSON.stringify(defaultParams)
+          data: JSON.stringify(defaultParams),
         });
       });
     });
@@ -81,7 +81,7 @@ describe('user-settings-api', () => {
       };
 
       const testParams: UserSettingsRequestModel = {
-        notificationLevelPreference: 'MentionsOnly'
+        notificationLevelPreference: 'MentionsOnly',
       };
 
       const defaultRequestParameters = {
@@ -104,5 +104,4 @@ describe('user-settings-api', () => {
       });
     });
   });
-
-})
+});

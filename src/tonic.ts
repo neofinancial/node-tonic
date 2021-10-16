@@ -41,7 +41,10 @@ class Tonic {
       .then((request) => request(this.axios, this.basePath));
   }
 
-  public updateUserSettings(params: UserSettingsRequestModel, options?: AxiosRequestConfig): AxiosPromise<UserSettingsResponseModel> {
+  public updateUserSettings(
+    params: UserSettingsRequestModel,
+    options?: AxiosRequestConfig
+  ): AxiosPromise<UserSettingsResponseModel> {
     return userSettingsApi(this.configuration)
       .updateUserSettings(params, options)
       .then((request) => request(this.axios, this.basePath));
