@@ -1,8 +1,8 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
-import { RequestArgs } from '../tonic';
-import { Configuration } from '../configuration';
-import { getRequestOptionsWithApiKey } from '../lib/get-request-options-with-api-key';
+import { RequestArgs } from '../../tonic';
+import { Configuration } from '../../configuration';
+import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
 import { VersionAPIAxiosParamCreator, VersionAPI } from './version.api.types';
 
 const versionApiRequestArgsCreator = (configuration: Configuration): VersionAPIAxiosParamCreator => {
