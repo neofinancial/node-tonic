@@ -24,7 +24,7 @@ export type UserSettingsAPI = {
     options?: AxiosRequestConfig
   ) => Promise<(axios: AxiosInstance, basePath: string) => AxiosPromise<UserSettingsResponseModel>>;
   updateUserSettings: (
-    params?: UserSettingsRequestModel,
+    params: UserSettingsRequestModel,
     options?: AxiosRequestConfig
   ) => Promise<(axios: AxiosInstance, basePath: string) => AxiosPromise<UserSettingsResponseModel>>;
 };
