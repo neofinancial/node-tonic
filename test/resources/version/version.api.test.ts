@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { stub } from 'jest-auto-stub';
 
-import { Configuration } from '../../src/configuration';
-import { versionApi, versionApiRequestArgsCreator } from '../../src/version-api/version.api';
+import { Configuration } from '../../../src/configuration';
+import { versionApiRequestArgsCreator, versionApi } from '../../../src/resources/version/version.api';
 
 describe('versionApiRequestArgsCreator', () => {
   const config: Configuration = {

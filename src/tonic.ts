@@ -1,9 +1,9 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from './configuration';
-import { userSettingsApi } from './user-settings-api/user-settings-api';
-import { UserSettingsRequestModel, UserSettingsResponseModel } from './user-settings-api/user-settings-api.types';
-import { versionApi } from './version-api/version.api';
+import { userSettingsApi } from './resources/user-settings/user-settings-api';
+import { UserSettingsRequestModel, UserSettingsResponseModel } from './resources/user-settings/user-settings-api.types';
+import { versionApi } from './resources/version/version.api';
 import { collectionApi } from './collection-api/collection.api';
 import { Table } from './collection-api/collection.api.types';
 

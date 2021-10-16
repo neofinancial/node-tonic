@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosInstance, AxiosPromise } from 'axios';
 
-import { RequestArgs } from '../tonic';
-import { components, paths } from '../types/tonic.types';
+import { RequestArgs } from '../../tonic';
+import { components, paths } from '../../types/tonic.types';
 
 // return types
 export type UserSettingsResponseModel = components['schemas']['UserSettingsResponseModel'];

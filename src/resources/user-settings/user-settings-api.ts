@@ -1,8 +1,8 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
-import { Configuration } from '../configuration';
-import { getRequestOptionsWithApiKey } from '../lib/get-request-options-with-api-key';
-import { RequestArgs } from '../tonic';
+import { Configuration } from '../../configuration';
+import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
+import { RequestArgs } from '../../tonic';
 import {
   UserSettingsAPI,
   UserSettingsApiRequestArgsCreator,
