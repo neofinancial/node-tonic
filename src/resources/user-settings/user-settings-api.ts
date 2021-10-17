@@ -13,11 +13,11 @@ import {
 const userSettingsApiRequestArgsCreator = (configuration: Configuration): UserSettingsApiRequestArgsCreator => {
   return {
     getUserSettingsRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const localVarPath = `/api/UserSettings`;
+      const requestPath = `/api/UserSettings`;
       const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
 
       return {
-        url: localVarPath,
+        url: requestPath,
         options: requestOptionsWithHeaders,
       };
     },
@@ -25,7 +25,7 @@ const userSettingsApiRequestArgsCreator = (configuration: Configuration): UserSe
       params: UserSettingsRequestModel,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      const localVarPath = `/api/UserSettings`;
+      const requestPath = `/api/UserSettings`;
       const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('POST', configuration, {
         ...options,
         headers: { 'Content-Type': 'application/json' },
@@ -33,7 +33,7 @@ const userSettingsApiRequestArgsCreator = (configuration: Configuration): UserSe
       });
 
       return {
-        url: localVarPath,
+        url: requestPath,
         options: requestOptionsWithHeaders,
       };
     },

@@ -1,9 +1,9 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 
-import { Configuration } from '../configuration';
-import { getRequestOptionsWithApiKey } from '../lib/get-request-options-with-api-key';
-import { RequestArgs } from '../tonic';
+import { Configuration } from '../../configuration';
+import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
+import { RequestArgs } from '../../tonic';
 import {
   CollectionAPI,
   CollectionAPIAxiosParamCreator,

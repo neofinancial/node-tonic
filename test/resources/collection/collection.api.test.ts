@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { stub } from 'jest-auto-stub';
 
-import { collectionApiRequestArgsCreator, collectionApi } from '../../../src/collection-api/collection.api';
 import { Configuration } from '../../../src/configuration';
+import { collectionApi, collectionApiRequestArgsCreator } from '../../../src/resources/collection/collection.api';
 
 describe('collection-api', () => {
   describe('collectionApiRequestArgsCreator', () => {
