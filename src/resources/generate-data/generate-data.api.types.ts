@@ -61,5 +61,5 @@ export {
   IdModel,
   GenerateDataStartParams,
   GenerateDataCancelParams,
-  StrictMode
+  StrictMode,
 };

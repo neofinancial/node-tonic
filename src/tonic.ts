@@ -48,13 +48,21 @@ class Tonic {
       .then((request) => request(this.axios, this.basePath));
   }
 
-  public startDataGenerationJob(workspaceId: string, strictMode?: StrictMode, options?: AxiosRequestConfig): AxiosPromise<JobScanModel> {
+  public startDataGenerationJob(
+    workspaceId: string,
+    strictMode?: StrictMode,
+    options?: AxiosRequestConfig
+  ): AxiosPromise<JobScanModel> {
     return generateDataApi(this.configuration)
       .startDataGenerationJob({ workspaceId, strictMode }, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
-  public cancelDataGenerationJob(workspaceId: string, generateDataId: string, options?: AxiosRequestConfig): AxiosPromise {
+  public cancelDataGenerationJob(
+    workspaceId: string,
+    generateDataId: string,
+    options?: AxiosRequestConfig
+  ): AxiosPromise {
     return generateDataApi(this.configuration)
       .cancelDataGenerationJob({ workspaceId, generateDataId }, options)
       .then((request) => request(this.axios, this.basePath));

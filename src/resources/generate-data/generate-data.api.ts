@@ -47,7 +47,6 @@ const generateDataApiRequestArgsCreator = (configuration: Configuration): Genera
       params: GenerateDataStartParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> => {
-
       const requestPath = `/api/GenerateData/start`;
       const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('POST', configuration, {
         ...options,
