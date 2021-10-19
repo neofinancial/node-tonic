@@ -19,12 +19,12 @@ const schemaDiffAPIRequestArgsCreator = (configuration: Configuration): SchemaDi
     getGetSchemaDiffRequestArgs: async (
       params: GetSchemaDiffParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/SchemaDiff`, params, configuration, options),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/SchemaDiff`, params, configuration, options),
     getResolveSchemaDiffRequestArgs: async (
       postData: ResolveSchemaDiffParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', `/api/SchemaDiff/resolve`, {}, configuration, options, postData),
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs('POST', `/api/SchemaDiff/resolve`, {}, configuration, options, postData),
     getResolveMultipleSchemaDiffRequestArgs: async (
       postData: ResolveMultipleSchemaDiffParams,
       options?: AxiosRequestConfig
