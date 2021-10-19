@@ -1,5 +1,4 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
-import qs from 'qs';
 
 import { Configuration } from '../../configuration';
 import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
@@ -20,28 +19,22 @@ const generateDataApiRequestArgsCreator = (configuration: Configuration): Genera
     getGetGenerateDataJobsRequestArgs: async (
       params: GenerateDataJobsParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/GenerateData?${qs.stringify(params)}`, configuration, options),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/GenerateData`, params, configuration, options),
     getGetGenerateDataJobRequestArgs: async (
-      params: GenerateDataJobParams,
+      inputParams: GenerateDataJobParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs(
-        'GET',
-        `/api/GenerateData/jobs/${params.databaseScanId}${options?.params ? qs.stringify(options.params) : ''}`,
-        configuration,
-        options
-      ),
+      getAxiosRequestArgs('GET', `/api/GenerateData/jobs/${inputParams.databaseScanId}`, {}, configuration, options),
     getStartDataGenerationJobRequestArgs: async (
       params: GenerateDataStartParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('POST', `/api/GenerateData/start?${qs.stringify(params)}`, configuration, options, {}),
+      getAxiosRequestArgs('POST', `/api/GenerateData/start`, params, configuration, options, {}),
     getCancelDataGenerationJobRequestArgs: async (
       params: GenerateDataCancelParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('POST', `/api/GenerateData/cancel?${qs.stringify(params)}`, configuration, options, {}),
+      getAxiosRequestArgs('POST', `/api/GenerateData/cancel`, params, configuration, options, {}),
   };
 };
 

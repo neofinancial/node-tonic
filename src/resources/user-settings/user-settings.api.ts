@@ -13,11 +13,11 @@ import {
 const userSettingsApiRequestArgsCreator = (configuration: Configuration): UserSettingsApiRequestArgsCreator => {
   return {
     getUserSettingsRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/UserSettings`, configuration, options),
+      getAxiosRequestArgs('GET', `/api/UserSettings`, {}, configuration, options),
     updateUserSettingsRequestArgs: async (
       postData: UserSettingsRequestModel,
       options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/UserSettings', configuration, options, postData),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/UserSettings', {}, configuration, options, postData),
   };
 };
 
