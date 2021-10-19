@@ -1,5 +1,4 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
-import qs from 'qs';
 
 import { RequestArgs } from '../../tonic';
 import {
@@ -21,16 +20,16 @@ const schemaDiffAPIRequestArgsCreator = (configuration: Configuration): SchemaDi
       params: GetSchemaDiffParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/SchemaDiff?${qs.stringify(params)}`, configuration, options),
+      getAxiosRequestArgs('GET', `/api/SchemaDiff`, params, configuration, options),
     getResolveSchemaDiffRequestArgs: async (
       postData: ResolveSchemaDiffParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', `/api/SchemaDiff/resolve`, configuration, options, postData),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', `/api/SchemaDiff/resolve`, {}, configuration, options, postData),
     getResolveMultipleSchemaDiffRequestArgs: async (
       postData: ResolveMultipleSchemaDiffParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('POST', `/api/SchemaDiff/resolve_multiple`, configuration, options, postData),
+      getAxiosRequestArgs('POST', `/api/SchemaDiff/resolve_multiple`, {}, configuration, options, postData),
   };
 };
 
