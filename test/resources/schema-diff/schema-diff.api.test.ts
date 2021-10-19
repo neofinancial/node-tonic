@@ -4,7 +4,10 @@ import qs from 'qs';
 
 import { Configuration } from '../../../src/configuration';
 import { schemaDiffApi, schemaDiffAPIRequestArgsCreator } from '../../../src/resources/schema-diff/schema-diff.api';
-import { ResolveMultipleSchemaDiffParams, ResolveSchemaDiffParams } from '../../../src/resources/schema-diff/schema-diff.api.types';
+import {
+  ResolveMultipleSchemaDiffParams,
+  ResolveSchemaDiffParams,
+} from '../../../src/resources/schema-diff/schema-diff.api.types';
 
 describe('schema-diff-api', () => {
   describe('generateDataApiRequestArgsCreator', () => {
@@ -34,7 +37,7 @@ describe('schema-diff-api', () => {
     describe('getResolveSchemaDiffRequestArgs', () => {
       const defaultPostParams: ResolveSchemaDiffParams = {
         workspaceId: 'workspace-id',
-        issueCode: 'new_column'
+        issueCode: 'new_column',
       };
 
       it('should return /api/GenerateData for url', async () => {
@@ -59,23 +62,27 @@ describe('schema-diff-api', () => {
         items: [
           {
             workspaceId: 'workspace-id',
-            issueCode: 'new_collection'
-          }
-        ]
-      }
+            issueCode: 'new_collection',
+          },
+        ],
+      };
 
       it('should return /api/GenerateData for url', async () => {
-        const args = await schemaDiffAPIRequestArgsCreator(config).getResolveMultipleSchemaDiffRequestArgs(defaultPostParams);
+        const args = await schemaDiffAPIRequestArgsCreator(config).getResolveMultipleSchemaDiffRequestArgs(
+          defaultPostParams
+        );
 
         expect(args.url).toBe(`/api/SchemaDiff/resolve_multiple`);
       });
 
       it('should use apiKey from configuration in options', async () => {
-        const args = await schemaDiffAPIRequestArgsCreator(config).getResolveMultipleSchemaDiffRequestArgs(defaultPostParams);
+        const args = await schemaDiffAPIRequestArgsCreator(config).getResolveMultipleSchemaDiffRequestArgs(
+          defaultPostParams
+        );
 
         expect(args.options).toEqual({
           data: JSON.stringify(defaultPostParams),
-          headers: { Authorization: config.apiKey, 'Content-Type': 'application/json'  },
+          headers: { Authorization: config.apiKey, 'Content-Type': 'application/json' },
           method: 'POST',
         });
       });
@@ -114,14 +121,14 @@ describe('schema-diff-api', () => {
     describe('resolveSchemaDiff', () => {
       const defaultPostParams: ResolveSchemaDiffParams = {
         workspaceId: 'workspace-id',
-        issueCode: 'new_column'
+        issueCode: 'new_column',
       };
 
       const defaultRequestParameters = {
         data: JSON.stringify(defaultPostParams),
         headers: {
           Authorization: config.apiKey,
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         method: 'POST',
         url: `${config.basePath}/api/SchemaDiff/resolve`,
@@ -142,10 +149,10 @@ describe('schema-diff-api', () => {
         items: [
           {
             workspaceId: 'workspace-id',
-            issueCode: 'new_column'
-          }
-        ]
-      }
+            issueCode: 'new_column',
+          },
+        ],
+      };
 
       const defaultRequestParameters = {
         data: JSON.stringify(defaultPostParams),
