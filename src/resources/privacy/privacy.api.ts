@@ -1,5 +1,4 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
-import qs from 'qs';
 
 import { Configuration } from '../../configuration';
 import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
@@ -20,31 +19,29 @@ const privacyApiRequestArgsCreator = (configuration: Configuration): PrivacyAPIR
     getGetPrivacyHistoryRequestArgs: async (
       params: PrivacyHistoryParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/Privacy/history?${qs.stringify(params)}`, configuration, options),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Privacy/history`, params, configuration, options),
     getGetPrivacySuggestionsRequestArgs: async (
       params: PrivacySuggestionsParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/Privacy/suggestions?${qs.stringify(params)}`, configuration, options),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Privacy/suggestions`, params, configuration, options),
     getGetPrivacyForColumnsRequestArgs: async (
       params: PrivacyForColumnsParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/Privacy/privacyforcolumns?${qs.stringify(params)}`, configuration, options),
+      getAxiosRequestArgs('GET', `/api/Privacy/privacyforcolumns`, params, configuration, options),
     getGetPiiTypeForColumnsRequestArgs: async (
       params: PiiTypeForColumnsParams,
       options?: AxiosRequestConfig
     ): Promise<RequestArgs> =>
-      getAxiosRequestArgs('GET', `/api/Privacy/piitypeforcolumns?${qs.stringify(params)}`, configuration, options),
+      getAxiosRequestArgs('GET', `/api/Privacy/piitypeforcolumns`, params, configuration, options),
     getIgnorePrivacyRequestArgs: async (
       postData: IgnorePrivacyPostParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/Privacy/ignore', configuration, options, postData),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/Privacy/ignore', {}, configuration, options, postData),
     getSetPrivacyRequestArgs: async (
       postData: SetPrivacyPostParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/Privacy/set', configuration, options, postData),
+    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/Privacy/set', {}, configuration, options, postData),
   };
 };
 
