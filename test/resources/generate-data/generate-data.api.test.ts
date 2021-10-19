@@ -82,7 +82,7 @@ describe('generate-data-api', () => {
         expect(args.options).toEqual({
           headers: { Authorization: config.apiKey, 'Content-Type': 'application/json' },
           method: 'POST',
-          data: {},
+          data: JSON.stringify({}),
         });
       });
     });
@@ -109,7 +109,7 @@ describe('generate-data-api', () => {
         expect(args.options).toEqual({
           headers: { Authorization: config.apiKey, 'Content-Type': 'application/json' },
           method: 'POST',
-          data: {},
+          data: JSON.stringify({}),
         });
       });
     });
@@ -181,7 +181,7 @@ describe('generate-data-api', () => {
           Authorization: config.apiKey,
         },
         method: 'POST',
-        data: {},
+        data: JSON.stringify({}),
         url: `${config.basePath}/api/GenerateData/start?${qs.stringify(testParams)}`,
       };
 
@@ -207,7 +207,7 @@ describe('generate-data-api', () => {
           Authorization: config.apiKey,
         },
         method: 'POST',
-        data: {},
+        data: JSON.stringify({}),
         url: `${config.basePath}/api/GenerateData/cancel?${qs.stringify(testParams)}`,
       };
 

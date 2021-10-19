@@ -2,7 +2,7 @@ import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'ax
 import qs from 'qs';
 
 import { Configuration } from '../../configuration';
-import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
+import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
 import { RequestArgs } from '../../tonic';
 import {
   CollectionAPI,
@@ -17,31 +17,11 @@ const collectionApiRequestArgsCreator = (configuration: Configuration): Collecti
     getCollectionsRequestArgs: async (
       params: GetCollectionQueryParameters,
       options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/Collection/full`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
-
-      const queryParams = { ...params, ...options.params };
-
-      return {
-        url: `${requestPath}?${qs.stringify(queryParams)}`,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Collection/full?${qs.stringify(params)}`, configuration, options),
     getCollectionNamesRequestArgs: async (
       params: GetCollectionFullQueryParameters,
       options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/Collection`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
-
-      const queryParams = { ...params, ...options.params };
-
-      return {
-        url: `${requestPath}?${qs.stringify(queryParams)}`,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Collection?${qs.stringify(params)}`, configuration, options),
   };
 };
 

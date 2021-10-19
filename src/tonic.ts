@@ -1,7 +1,7 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from './configuration';
-import { userSettingsApi } from './resources/user-settings/user-settings-api';
+import { userSettingsApi } from './resources/user-settings/user-settings.api';
 import { UserSettingsRequestModel, UserSettingsResponseModel } from './resources/user-settings/user-settings-api.types';
 import { versionApi } from './resources/version/version.api';
 import { collectionApi } from './resources/collection/collection.api';

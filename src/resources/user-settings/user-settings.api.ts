@@ -1,7 +1,7 @@
 import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from '../../configuration';
-import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
+import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
 import { RequestArgs } from '../../tonic';
 import {
   UserSettingsAPI,
@@ -12,31 +12,12 @@ import {
 
 const userSettingsApiRequestArgsCreator = (configuration: Configuration): UserSettingsApiRequestArgsCreator => {
   return {
-    getUserSettingsRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const requestPath = `/api/UserSettings`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
-
-      return {
-        url: requestPath,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    getUserSettingsRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> =>
+      getAxiosRequestArgs('GET', `/api/UserSettings`, configuration, options),
     updateUserSettingsRequestArgs: async (
-      params: UserSettingsRequestModel,
+      postData: UserSettingsRequestModel,
       options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/UserSettings`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('POST', configuration, {
-        ...options,
-        headers: { 'Content-Type': 'application/json' },
-        data: JSON.stringify(params),
-      });
-
-      return {
-        url: requestPath,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> => getAxiosRequestArgs('POST', '/api/UserSettings', configuration, options, postData),
   };
 };
 

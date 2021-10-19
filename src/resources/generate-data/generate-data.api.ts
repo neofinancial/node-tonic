@@ -2,7 +2,7 @@ import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'ax
 import qs from 'qs';
 
 import { Configuration } from '../../configuration';
-import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
+import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
 import { RequestArgs } from '../../tonic';
 import {
   GenerateDataAPI,
@@ -20,65 +20,28 @@ const generateDataApiRequestArgsCreator = (configuration: Configuration): Genera
     getGetGenerateDataJobsRequestArgs: async (
       params: GenerateDataJobsParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/GenerateData`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
-
-      const queryParams = { ...params, ...options?.params };
-
-      return {
-        url: `${requestPath}?${qs.stringify(queryParams)}`,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs('GET', `/api/GenerateData?${qs.stringify(params)}`, configuration, options),
     getGetGenerateDataJobRequestArgs: async (
       params: GenerateDataJobParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/GenerateData`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
-
-      return {
-        url: `${requestPath}/jobs/${params.databaseScanId}${options?.params ? qs.stringify(options.params) : ''}`,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs(
+        'GET',
+        `/api/GenerateData/jobs/${params.databaseScanId}${options?.params ? qs.stringify(options.params) : ''}`,
+        configuration,
+        options
+      ),
     getStartDataGenerationJobRequestArgs: async (
       params: GenerateDataStartParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/GenerateData/start`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('POST', configuration, {
-        ...options,
-        headers: { 'Content-Type': 'application/json' },
-        data: {},
-      });
-
-      const queryParams = { ...params, ...options?.params };
-
-      return {
-        url: `${requestPath}?${qs.stringify(queryParams)}`,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs('POST', `/api/GenerateData/start?${qs.stringify(params)}`, configuration, options, {}),
     getCancelDataGenerationJobRequestArgs: async (
       params: GenerateDataCancelParams,
       options?: AxiosRequestConfig
-    ): Promise<RequestArgs> => {
-      const requestPath = `/api/GenerateData/cancel`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('POST', configuration, {
-        ...options,
-        headers: { 'Content-Type': 'application/json' },
-        data: {},
-      });
-
-      const queryParams = { ...params, ...options?.params };
-
-      return {
-        url: `${requestPath}?${qs.stringify(queryParams)}`,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs('POST', `/api/GenerateData/cancel?${qs.stringify(params)}`, configuration, options, {}),
   };
 };
 
