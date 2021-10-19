@@ -72,52 +72,40 @@ class Tonic {
   }
 
   //Privacy
-  public getPrivacyHistory(
-    workspaceId: string,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<string> {
-    return privacyApi(this.configuration).getPrivacyHistory({ workspaceId }, options)
-    .then((request) => request(this.axios, this.basePath));
+  public getPrivacyHistory(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPrivacyHistory({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
   }
 
-  public getPrivacySuggestions(
-    workspaceId: string,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<string> {
-    return privacyApi(this.configuration).getPrivacySuggestions({ workspaceId }, options)
-    .then((request) => request(this.axios, this.basePath));
+  public getPrivacySuggestions(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPrivacySuggestions({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
   }
 
-  public getPrivacyForColumns(
-    workspaceId: string,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<string> {
-    return privacyApi(this.configuration).getPrivacyForColumns({ workspaceId }, options)
-    .then((request) => request(this.axios, this.basePath));
+  public getPrivacyForColumns(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPrivacyForColumns({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
   }
 
-  public getPiiTypeForColumns(
-    workspaceId: string,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<string> {
-    return privacyApi(this.configuration).getPiiTypeForColumns({ workspaceId }, options)
-    .then((request) => request(this.axios, this.basePath));
+  public getPiiTypeForColumns(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPiiTypeForColumns({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
   }
 
-  public ignorePrivacy(
-    params: IgnorePrivacyPostParams,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<string> {
-    return privacyApi(this.configuration).ignorePrivacy(params, options)
-    .then((request) => request(this.axios, this.basePath));
+  public ignorePrivacy(params: IgnorePrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .ignorePrivacy(params, options)
+      .then((request) => request(this.axios, this.basePath));
   }
 
-  public setPrivacy(
-    params: SetPrivacyPostParams,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<string> {
-    return privacyApi(this.configuration).setPrivacy(params, options)
-    .then((request) => request(this.axios, this.basePath));
+  public setPrivacy(params: SetPrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .setPrivacy(params, options)
+      .then((request) => request(this.axios, this.basePath));
   }
 
   //User Settings
