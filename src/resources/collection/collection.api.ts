@@ -17,11 +17,13 @@ const collectionApiRequestArgsCreator = (configuration: Configuration): Collecti
     getCollectionsRequestArgs: async (
       params: GetCollectionQueryParameters,
       options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Collection/full?${qs.stringify(params)}`, configuration, options),
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs('GET', `/api/Collection/full?${qs.stringify(params)}`, configuration, options),
     getCollectionNamesRequestArgs: async (
       params: GetCollectionFullQueryParameters,
       options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Collection?${qs.stringify(params)}`, configuration, options),
+    ): Promise<RequestArgs> =>
+      getAxiosRequestArgs('GET', `/api/Collection?${qs.stringify(params)}`, configuration, options),
   };
 };
 

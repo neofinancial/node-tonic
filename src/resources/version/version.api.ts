@@ -7,7 +7,8 @@ import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
 
 const versionApiRequestArgsCreator = (configuration: Configuration): VersionAPIAxiosParamCreator => {
   return {
-    getVersionRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => getAxiosRequestArgs('GET', `/api/Version`, configuration, options)
+    getVersionRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> =>
+      getAxiosRequestArgs('GET', `/api/Version`, configuration, options),
   };
 };
 
