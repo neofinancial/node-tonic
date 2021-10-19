@@ -36,6 +36,7 @@ class Tonic {
       .then((request) => request(this.axios, this.basePath));
   }
 
+  // DataGeneration
   public getDataGenerationJobs(workspaceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<JobScanModel>> {
     return generateDataApi(this.configuration)
       .getGenerateDataJobs({ workspaceId }, options)
