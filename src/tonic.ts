@@ -18,6 +18,8 @@ import {
   SchemaDiffResolveRequestModel,
 } from './resources/schema-diff/schema-diff.api.types';
 import { schemaDiffApi } from './resources/schema-diff/schema-diff.api';
+import { piiReportApi } from './resources/pii-report/pii-report.api';
+import { PiiReportRun } from './resources/pii-report/pii-report.api.types';
 
 export interface RequestArgs {
   url: string;
@@ -78,6 +80,58 @@ class Tonic {
       .cancelDataGenerationJob({ workspaceId, generateDataId }, options)
       .then((request) => request(this.axios, this.basePath));
   }
+
+  //PiiReport
+  public async getMostRecentActiveOrCompletedPiiReport(workspaceId: string): Promise<JobScanModel> {
+    const piiReport = await piiReportApi(this.configuration)
+      .getMostRecentActiveOrCompletedPiiReport({ workspaceId })
+      .then((request) => request(this.axios, this.basePath));
+
+    if (piiReport.status === 200) {
+      return piiReport.data;
+    }
+
+    throw new Error(piiReport.statusText);
+  }
+
+  public async getPiiReport(workspaceId: string): Promise<JobScanModel[]> {
+    const piiReport = await piiReportApi(this.configuration)
+      .getPiiReport({ workspaceId })
+      .then((request) => request(this.axios, this.basePath));
+
+    if (piiReport.status === 200) {
+      return piiReport.data;
+    }
+
+    throw new Error(piiReport.statusText);
+  }
+
+  public async startPiiReport(workspaceId: string): Promise<PiiReportRun> {
+    const piiReport = await piiReportApi(this.configuration)
+      .startPiiReport({ workspaceId })
+      .then((request) => request(this.axios, this.basePath));
+
+    if (piiReport.status === 200) {
+      return piiReport.data;
+    }
+
+    throw new Error(piiReport.statusText);
+  }
+
+  public async cancelPiiReport(piiReportId: string): Promise<boolean> {
+    const piiReport = await piiReportApi(this.configuration)
+      .cancelPiiReport({ piiReportId })
+      .then((request) => request(this.axios, this.basePath));
+
+    if (piiReport.status === 200) {
+      return true;
+    }
+
+    throw new Error(piiReport.statusText);
+  }
+
+  // public startPiiReport()
+  // public cancelPiiReport()
 
   //Privacy
   public getPrivacyHistory(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
