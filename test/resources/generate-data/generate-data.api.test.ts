@@ -120,8 +120,6 @@ describe('generate-data-api', () => {
       apiKey: 'test-api-key',
       basePath: 'tonic-url',
     };
-    // startDataGenerationJob
-    // cancelDataGenerationJob
 
     describe('getGenerateDataJobs', () => {
       const inputRequestParameters: GenerateDataJobsParams = {
