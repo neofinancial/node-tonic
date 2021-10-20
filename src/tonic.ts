@@ -8,6 +8,8 @@ import { collectionApi } from './resources/collection/collection.api';
 import { Table } from './resources/collection/collection.api.types';
 import { generateDataApi } from './resources/generate-data/generate-data.api';
 import { JobScanModel, StrictMode } from './resources/generate-data/generate-data.api.types';
+import { privacyApi } from './resources/privacy/privacy.api';
+import { IgnorePrivacyPostParams, SetPrivacyPostParams } from './resources/privacy/privacy.api.types';
 
 export interface RequestArgs {
   url: string;
@@ -66,6 +68,43 @@ class Tonic {
   ): AxiosPromise {
     return generateDataApi(this.configuration)
       .cancelDataGenerationJob({ workspaceId, generateDataId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  //Privacy
+  public getPrivacyHistory(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPrivacyHistory({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public getPrivacySuggestions(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPrivacySuggestions({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public getPrivacyForColumns(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPrivacyForColumns({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public getPiiTypeForColumns(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .getPiiTypeForColumns({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public ignorePrivacy(params: IgnorePrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .ignorePrivacy(params, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public setPrivacy(params: SetPrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
+    return privacyApi(this.configuration)
+      .setPrivacy(params, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
