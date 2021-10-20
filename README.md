@@ -62,10 +62,10 @@ Here is a list of all the Tonic.ai API endpoints along with the corresponding li
 | `/DataSource/delete_rootcert`                                   | Not Implemented                     |
 | `/DataSource/delete_gbqserviceaccount`                          | Not Implemented                     |
 | _GenerateData_                                                  |
-| `/GenerateData`                                                 | Not Implemented                     |
-| `/GenerateData/jobs/{databaseScanId}`                           | Not Implemented                     |
-| `/GenerateData/start`                                           | Not Implemented                     |
-| `/GenerateData/cancel`                                          | Not Implemented                     |
+| `/GenerateData`                                                 | getDataGenerationJobs               |
+| `/GenerateData/jobs/{databaseScanId}`                           | getDataGenerationJob                |
+| `/GenerateData/start`                                           | startDataGenerationJob              |
+| `/GenerateData/cancel`                                          | cancelDataGenerationJob             |
 | _Groups_                                                        |
 | `/Groups`                                                       | Not Implemented                     |
 | `/Groups/cleanup`                                               | Not Implemented                     |

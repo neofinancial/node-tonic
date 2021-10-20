@@ -1,7 +1,7 @@
 import { AxiosRequestConfig, AxiosInstance, AxiosPromise } from 'axios';
 
-import { RequestArgs } from '../tonic';
-import { components, paths } from '../types/tonic.types';
+import { RequestArgs } from '../../tonic';
+import { components, paths } from '../../types/tonic.types';
 
 export type CollectionAPI = {
   getCollectionNames: (

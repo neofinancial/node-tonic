@@ -2,20 +2,13 @@ import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'ax
 
 import { RequestArgs } from '../../tonic';
 import { Configuration } from '../../configuration';
-import { getRequestOptionsWithApiKey } from '../../lib/get-request-options-with-api-key';
 import { VersionAPIAxiosParamCreator, VersionAPI } from './version.api.types';
+import { getAxiosRequestArgs } from '../../lib/get-axios-request-args';
 
 const versionApiRequestArgsCreator = (configuration: Configuration): VersionAPIAxiosParamCreator => {
   return {
-    getVersionRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-      const requestPath = `/api/Version`;
-      const requestOptionsWithHeaders = await getRequestOptionsWithApiKey('GET', configuration, options);
-
-      return {
-        url: requestPath,
-        options: requestOptionsWithHeaders,
-      };
-    },
+    getVersionRequestArgs: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> =>
+      getAxiosRequestArgs('GET', `/api/Version`, {}, configuration, options),
   };
 };
 

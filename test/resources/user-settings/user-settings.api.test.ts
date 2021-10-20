@@ -5,7 +5,7 @@ import { Configuration } from '../../../src/configuration';
 import {
   userSettingsApiRequestArgsCreator,
   userSettingsApi,
-} from '../../../src/resources/user-settings/user-settings-api';
+} from '../../../src/resources/user-settings/user-settings.api';
 import { UserSettingsRequestModel } from '../../../src/resources/user-settings/user-settings-api.types';
 
 describe('user-settings-api', () => {
