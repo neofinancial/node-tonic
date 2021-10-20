@@ -10,6 +10,14 @@ import { generateDataApi } from './resources/generate-data/generate-data.api';
 import { JobScanModel, StrictMode } from './resources/generate-data/generate-data.api.types';
 import { privacyApi } from './resources/privacy/privacy.api';
 import { IgnorePrivacyPostParams, SetPrivacyPostParams } from './resources/privacy/privacy.api.types';
+import {
+  ResolveMultipleSchemaDiffParams,
+  ResolveSchemaDiffParams,
+  SchemaDiffItem,
+  SchemaDiffResolveMultipleRequestModel,
+  SchemaDiffResolveRequestModel,
+} from './resources/schema-diff/schema-diff.api.types';
+import { schemaDiffApi } from './resources/schema-diff/schema-diff.api';
 
 export interface RequestArgs {
   url: string;
@@ -105,6 +113,31 @@ class Tonic {
   public setPrivacy(params: SetPrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
     return privacyApi(this.configuration)
       .setPrivacy(params, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  //SchemaDiff
+  public getSchemaDiff(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<SchemaDiffItem[]> {
+    return schemaDiffApi(this.configuration)
+      .getSchemaDiff({ workspaceId }, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public resolveSchemaDiff(
+    params: ResolveSchemaDiffParams,
+    options?: AxiosRequestConfig
+  ): AxiosPromise<SchemaDiffResolveRequestModel> {
+    return schemaDiffApi(this.configuration)
+      .resolveSchemaDiff(params, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  public resolveMultipleSchemaDiffs(
+    params: ResolveMultipleSchemaDiffParams,
+    options?: AxiosRequestConfig
+  ): AxiosPromise<SchemaDiffResolveMultipleRequestModel> {
+    return schemaDiffApi(this.configuration)
+      .resolveMultipleSchemaDiff(params, options)
       .then((request) => request(this.axios, this.basePath));
   }
 

@@ -82,9 +82,9 @@ Here is a list of all the Tonic.ai API endpoints along with the corresponding li
 | `/Privacy/set`                                                  | Not Implemented                     |
 | `/Privacy/suggestions`                                          | Not Implemented                     |
 | _SchemaDiff_                                                    |
-| `/SchemaDiff`                                                   | Not Implemented                     |
-| `/SchemaDiff/resolve`                                           | Not Implemented                     |
-| `/SchemaDiff/resolve_multiple`                                  | Not Implemented                     |
+| `/SchemaDiff`                                                   | getSchemaDiff                       |
+| `/SchemaDiff/resolve`                                           | resolveSchemaDiff                   |
+| `/SchemaDiff/resolve_multiple`                                  | resolveMultipleSchemaDiffs          |
 | _Table_                                                         |
 | `/Table`                                                        | Not Implemented                     |
 | `/Table/relationships`                                          | Not Implemented                     |
