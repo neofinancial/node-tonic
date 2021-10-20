@@ -91,7 +91,7 @@ const generateDataApi = (configuration: Configuration): GenerateDataAPI => {
     async cancelDataGenerationJob(
       params: GenerateDataCancelParams,
       options?: AxiosRequestConfig
-    ): Promise<(axios: AxiosInstance, basePath: string) => AxiosPromise> {
+    ): Promise<(axios: AxiosInstance, basePath: string) => AxiosPromise<IdModel>> {
       const requestAxiosArgs = await generateDataApiRequestArgsCreator(
         configuration
       ).getCancelDataGenerationJobRequestArgs(params, options);

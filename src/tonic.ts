@@ -1,4 +1,4 @@
-import globalAxios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from './configuration';
 import { userSettingsApi } from './resources/user-settings/user-settings.api';
@@ -7,7 +7,7 @@ import { versionApi } from './resources/version/version.api';
 import { collectionApi } from './resources/collection/collection.api';
 import { Table } from './resources/collection/collection.api.types';
 import { generateDataApi } from './resources/generate-data/generate-data.api';
-import { JobScanModel, StrictMode } from './resources/generate-data/generate-data.api.types';
+import { IdModel, JobScanModel, StrictMode } from './resources/generate-data/generate-data.api.types';
 import { privacyApi } from './resources/privacy/privacy.api';
 import { IgnorePrivacyPostParams, SetPrivacyPostParams } from './resources/privacy/privacy.api.types';
 import {
@@ -35,11 +35,8 @@ class Tonic {
     this.basePath = configuration.basePath;
   }
 
-  // Collection
-  public async getCollections(workspaceId?: string): Promise<Table[]> {
-    const result = await collectionApi(this.configuration)
-      .getCollections({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+  public async handleRequest<T>(request: (axios: AxiosInstance, basePath: string) => AxiosPromise<T>): Promise<T> {
+    const result = await request(this.axios, this.basePath);
 
     if (result.status !== 200) {
       throw new Error(result.statusText);
@@ -48,267 +45,145 @@ class Tonic {
     return result.data;
   }
 
+  // Collection
+  public async getCollections(workspaceId?: string): Promise<Table[]> {
+    const request = await collectionApi(this.configuration).getCollections({ workspaceId });
+
+    return this.handleRequest<Table[]>(request);
+  }
+
   public async getCollectionNames(workspaceId?: string): Promise<string[]> {
-    const result = await collectionApi(this.configuration)
-      .getCollectionNames({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await collectionApi(this.configuration).getCollectionNames({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string[]>(request);
   }
 
   // DataGeneration
   public async getDataGenerationJobs(workspaceId?: string): Promise<JobScanModel[]> {
-    const result = await generateDataApi(this.configuration)
-      .getGenerateDataJobs({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await generateDataApi(this.configuration).getGenerateDataJobs({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<JobScanModel[]>(request);
   }
 
   public async getDataGenerationJob(databaseScanId: string): Promise<JobScanModel> {
-    const result = await generateDataApi(this.configuration)
-      .getGenerateDataJob({ databaseScanId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await generateDataApi(this.configuration).getGenerateDataJob({ databaseScanId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<JobScanModel>(request);
   }
 
-  public async startDataGenerationJob(workspaceId: string, strictMode?: StrictMode): Promise<JobScanModel> {
-    const result = await generateDataApi(this.configuration)
-      .startDataGenerationJob({ workspaceId, strictMode })
-      .then((request) => request(this.axios, this.basePath));
+  public async startDataGenerationJob(workspaceId: string, strictMode?: StrictMode): Promise<IdModel> {
+    const request = await generateDataApi(this.configuration).startDataGenerationJob({ workspaceId, strictMode });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<IdModel>(request);
   }
 
-  public async cancelDataGenerationJob(workspaceId: string, generateDataId: string): Promise<boolean> {
-    const result = await generateDataApi(this.configuration)
-      .cancelDataGenerationJob({ workspaceId, generateDataId })
-      .then((request) => request(this.axios, this.basePath));
+  public async cancelDataGenerationJob(workspaceId: string, generateDataId: string): Promise<unknown> {
+    const request = await generateDataApi(this.configuration).cancelDataGenerationJob({ workspaceId, generateDataId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return true;
+    return this.handleRequest<unknown>(request);
   }
 
   //PiiReport
   public async getMostRecentActiveOrCompletedPiiReport(workspaceId: string): Promise<JobScanModel> {
-    const piiReport = await piiReportApi(this.configuration)
-      .getMostRecentActiveOrCompletedPiiReport({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await piiReportApi(this.configuration).getMostRecentActiveOrCompletedPiiReport({ workspaceId });
 
-    if (piiReport.status === 200) {
-      return piiReport.data;
-    }
-
-    throw new Error(piiReport.statusText);
+    return this.handleRequest<JobScanModel>(request);
   }
 
   public async getPiiReport(workspaceId: string): Promise<JobScanModel[]> {
-    const piiReport = await piiReportApi(this.configuration)
-      .getPiiReport({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await piiReportApi(this.configuration).getPiiReport({ workspaceId });
 
-    if (piiReport.status === 200) {
-      return piiReport.data;
-    }
-
-    throw new Error(piiReport.statusText);
+    return this.handleRequest<JobScanModel[]>(request);
   }
 
   public async startPiiReport(workspaceId: string): Promise<PiiReportRun> {
-    const piiReport = await piiReportApi(this.configuration)
-      .startPiiReport({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await piiReportApi(this.configuration).startPiiReport({ workspaceId });
 
-    if (piiReport.status === 200) {
-      return piiReport.data;
-    }
-
-    throw new Error(piiReport.statusText);
+    return this.handleRequest<PiiReportRun>(request);
   }
 
-  public async cancelPiiReport(piiReportId: string): Promise<boolean> {
-    const piiReport = await piiReportApi(this.configuration)
-      .cancelPiiReport({ piiReportId })
-      .then((request) => request(this.axios, this.basePath));
+  public async cancelPiiReport(piiReportId: string): Promise<unknown> {
+    const request = await piiReportApi(this.configuration).cancelPiiReport({ piiReportId });
 
-    if (piiReport.status === 200) {
-      return true;
-    }
-
-    throw new Error(piiReport.statusText);
+    return this.handleRequest<unknown>(request);
   }
-
-  // public startPiiReport()
-  // public cancelPiiReport()
 
   //Privacy
   public async getPrivacyHistory(workspaceId: string): Promise<string> {
-    const result = await privacyApi(this.configuration)
-      .getPrivacyHistory({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await privacyApi(this.configuration).getPrivacyHistory({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string>(request);
   }
 
   public async getPrivacySuggestions(workspaceId: string): Promise<string> {
-    const result = await privacyApi(this.configuration)
-      .getPrivacySuggestions({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await privacyApi(this.configuration).getPrivacySuggestions({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string>(request);
   }
 
   public async getPrivacyForColumns(workspaceId: string): Promise<string> {
-    const result = await privacyApi(this.configuration)
-      .getPrivacyForColumns({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await privacyApi(this.configuration).getPrivacyForColumns({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string>(request);
   }
 
   public async getPiiTypeForColumns(workspaceId: string): Promise<string> {
-    const result = await privacyApi(this.configuration)
-      .getPiiTypeForColumns({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await privacyApi(this.configuration).getPiiTypeForColumns({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string>(request);
   }
 
   public async ignorePrivacy(params: IgnorePrivacyPostParams): Promise<string> {
-    const result = await privacyApi(this.configuration)
-      .ignorePrivacy(params)
-      .then((request) => request(this.axios, this.basePath));
+    const request = await privacyApi(this.configuration).ignorePrivacy(params);
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string>(request);
   }
 
   public async setPrivacy(params: SetPrivacyPostParams): Promise<string> {
-    const result = await privacyApi(this.configuration)
-      .setPrivacy(params)
-      .then((request) => request(this.axios, this.basePath));
+    const request = await privacyApi(this.configuration).setPrivacy(params);
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<string>(request);
   }
 
   //SchemaDiff
   public async getSchemaDiff(workspaceId: string): Promise<SchemaDiffItem[]> {
-    const result = await schemaDiffApi(this.configuration)
-      .getSchemaDiff({ workspaceId })
-      .then((request) => request(this.axios, this.basePath));
+    const request = await schemaDiffApi(this.configuration).getSchemaDiff({ workspaceId });
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<SchemaDiffItem[]>(request);
   }
 
   public async resolveSchemaDiff(params: ResolveSchemaDiffParams): Promise<SchemaDiffResolveRequestModel> {
-    const result = await schemaDiffApi(this.configuration)
-      .resolveSchemaDiff(params)
-      .then((request) => request(this.axios, this.basePath));
+    const request = await schemaDiffApi(this.configuration).resolveSchemaDiff(params);
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<SchemaDiffResolveRequestModel>(request);
   }
 
   public async resolveMultipleSchemaDiffs(
     params: ResolveMultipleSchemaDiffParams
   ): Promise<SchemaDiffResolveMultipleRequestModel> {
-    const result = await schemaDiffApi(this.configuration)
-      .resolveMultipleSchemaDiff(params)
-      .then((request) => request(this.axios, this.basePath));
+    const request = await schemaDiffApi(this.configuration).resolveMultipleSchemaDiff(params);
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<SchemaDiffResolveMultipleRequestModel>(request);
   }
 
   //User Settings
   public async getUserSettings(): Promise<UserSettingsResponseModel> {
-    const result = await userSettingsApi(this.configuration)
-      .getUserSettings()
-      .then((request) => request(this.axios, this.basePath));
+    const request = await userSettingsApi(this.configuration).getUserSettings();
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<UserSettingsResponseModel>(request);
   }
 
   public async updateUserSettings(params: UserSettingsRequestModel): Promise<UserSettingsResponseModel> {
-    const result = await userSettingsApi(this.configuration)
-      .updateUserSettings(params)
-      .then((request) => request(this.axios, this.basePath));
+    const request = await userSettingsApi(this.configuration).updateUserSettings(params);
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<UserSettingsResponseModel>(request);
   }
 
   // Version
   public async getVersion(): Promise<number> {
-    const result = await versionApi(this.configuration)
-      .getVersion()
-      .then((request) => request(this.axios, this.basePath));
+    const request = await versionApi(this.configuration).getVersion();
 
-    if (result.status !== 200) {
-      throw new Error(result.statusText);
-    }
-
-    return result.data;
+    return this.handleRequest<number>(request);
   }
 }
 
