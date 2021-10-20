@@ -1,6 +1,6 @@
 {
   "name": "node-tonic",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "tonic.ai API wrapper for Node.js",
   "author": "Neo Financial Engineering <engineering@neofinancial.com>",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "format": "prettier --write \"**/*.{ts,js,json,yaml,yml,md}\"",
     "format:check": "prettier --check \"**/*.{ts,js,json,yaml,yml,md}\"",
     "prepublishOnly": "rimraf build && tsc",
-    "generate:types": "npx openapi-typescript https://app.tonic.ai/swagger/v1/swagger.json --output ./src/types/tonic.types.ts"
+    "generate:types": "npx openapi-typescript https://app.tonic.ai/swagger/v1/swagger.json --output ./src/types/tonic.types.ts && npm run format"
   },
   "devDependencies": {
     "@types/jest": "^26.0.14",

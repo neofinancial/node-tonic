@@ -1,4 +1,4 @@
-import globalAxios, { AxiosInstance, AxiosPromise, AxiosRequestConfig } from 'axios';
+import globalAxios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 import { Configuration } from './configuration';
 import { userSettingsApi } from './resources/user-settings/user-settings.api';
@@ -36,49 +36,77 @@ class Tonic {
   }
 
   // Collection
-  public getCollections(workspaceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<Table>> {
-    return collectionApi(this.configuration)
-      .getCollections({ workspaceId }, options)
+  public async getCollections(workspaceId?: string): Promise<Table[]> {
+    const result = await collectionApi(this.configuration)
+      .getCollections({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public getCollectionNames(workspaceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<string>> {
-    return collectionApi(this.configuration)
-      .getCollectionNames({ workspaceId }, options)
+  public async getCollectionNames(workspaceId?: string): Promise<string[]> {
+    const result = await collectionApi(this.configuration)
+      .getCollectionNames({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
   // DataGeneration
-  public getDataGenerationJobs(workspaceId?: string, options?: AxiosRequestConfig): AxiosPromise<Array<JobScanModel>> {
-    return generateDataApi(this.configuration)
-      .getGenerateDataJobs({ workspaceId }, options)
+  public async getDataGenerationJobs(workspaceId?: string): Promise<JobScanModel[]> {
+    const result = await generateDataApi(this.configuration)
+      .getGenerateDataJobs({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public getDataGenerationJob(databaseScanId: string, options?: AxiosRequestConfig): AxiosPromise<JobScanModel> {
-    return generateDataApi(this.configuration)
-      .getGenerateDataJob({ databaseScanId }, options)
+  public async getDataGenerationJob(databaseScanId: string): Promise<JobScanModel> {
+    const result = await generateDataApi(this.configuration)
+      .getGenerateDataJob({ databaseScanId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public startDataGenerationJob(
-    workspaceId: string,
-    strictMode?: StrictMode,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<JobScanModel> {
-    return generateDataApi(this.configuration)
-      .startDataGenerationJob({ workspaceId, strictMode }, options)
+  public async startDataGenerationJob(workspaceId: string, strictMode?: StrictMode): Promise<JobScanModel> {
+    const result = await generateDataApi(this.configuration)
+      .startDataGenerationJob({ workspaceId, strictMode })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public cancelDataGenerationJob(
-    workspaceId: string,
-    generateDataId: string,
-    options?: AxiosRequestConfig
-  ): AxiosPromise {
-    return generateDataApi(this.configuration)
-      .cancelDataGenerationJob({ workspaceId, generateDataId }, options)
+  public async cancelDataGenerationJob(workspaceId: string, generateDataId: string): Promise<boolean> {
+    const result = await generateDataApi(this.configuration)
+      .cancelDataGenerationJob({ workspaceId, generateDataId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return true;
   }
 
   //PiiReport
@@ -134,88 +162,153 @@ class Tonic {
   // public cancelPiiReport()
 
   //Privacy
-  public getPrivacyHistory(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
-    return privacyApi(this.configuration)
-      .getPrivacyHistory({ workspaceId }, options)
+  public async getPrivacyHistory(workspaceId: string): Promise<string> {
+    const result = await privacyApi(this.configuration)
+      .getPrivacyHistory({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public getPrivacySuggestions(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
-    return privacyApi(this.configuration)
-      .getPrivacySuggestions({ workspaceId }, options)
+  public async getPrivacySuggestions(workspaceId: string): Promise<string> {
+    const result = await privacyApi(this.configuration)
+      .getPrivacySuggestions({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public getPrivacyForColumns(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
-    return privacyApi(this.configuration)
-      .getPrivacyForColumns({ workspaceId }, options)
+  public async getPrivacyForColumns(workspaceId: string): Promise<string> {
+    const result = await privacyApi(this.configuration)
+      .getPrivacyForColumns({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public getPiiTypeForColumns(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<string> {
-    return privacyApi(this.configuration)
-      .getPiiTypeForColumns({ workspaceId }, options)
+  public async getPiiTypeForColumns(workspaceId: string): Promise<string> {
+    const result = await privacyApi(this.configuration)
+      .getPiiTypeForColumns({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public ignorePrivacy(params: IgnorePrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
-    return privacyApi(this.configuration)
-      .ignorePrivacy(params, options)
+  public async ignorePrivacy(params: IgnorePrivacyPostParams): Promise<string> {
+    const result = await privacyApi(this.configuration)
+      .ignorePrivacy(params)
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public setPrivacy(params: SetPrivacyPostParams, options?: AxiosRequestConfig): AxiosPromise<string> {
-    return privacyApi(this.configuration)
-      .setPrivacy(params, options)
+  public async setPrivacy(params: SetPrivacyPostParams): Promise<string> {
+    const result = await privacyApi(this.configuration)
+      .setPrivacy(params)
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
   //SchemaDiff
-  public getSchemaDiff(workspaceId: string, options?: AxiosRequestConfig): AxiosPromise<SchemaDiffItem[]> {
-    return schemaDiffApi(this.configuration)
-      .getSchemaDiff({ workspaceId }, options)
+  public async getSchemaDiff(workspaceId: string): Promise<SchemaDiffItem[]> {
+    const result = await schemaDiffApi(this.configuration)
+      .getSchemaDiff({ workspaceId })
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public resolveSchemaDiff(
-    params: ResolveSchemaDiffParams,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<SchemaDiffResolveRequestModel> {
-    return schemaDiffApi(this.configuration)
-      .resolveSchemaDiff(params, options)
+  public async resolveSchemaDiff(params: ResolveSchemaDiffParams): Promise<SchemaDiffResolveRequestModel> {
+    const result = await schemaDiffApi(this.configuration)
+      .resolveSchemaDiff(params)
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public resolveMultipleSchemaDiffs(
-    params: ResolveMultipleSchemaDiffParams,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<SchemaDiffResolveMultipleRequestModel> {
-    return schemaDiffApi(this.configuration)
-      .resolveMultipleSchemaDiff(params, options)
+  public async resolveMultipleSchemaDiffs(
+    params: ResolveMultipleSchemaDiffParams
+  ): Promise<SchemaDiffResolveMultipleRequestModel> {
+    const result = await schemaDiffApi(this.configuration)
+      .resolveMultipleSchemaDiff(params)
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
   //User Settings
-  public getUserSettings(options?: AxiosRequestConfig): AxiosPromise<UserSettingsResponseModel> {
-    return userSettingsApi(this.configuration)
-      .getUserSettings(options)
+  public async getUserSettings(): Promise<UserSettingsResponseModel> {
+    const result = await userSettingsApi(this.configuration)
+      .getUserSettings()
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
-  public updateUserSettings(
-    params: UserSettingsRequestModel,
-    options?: AxiosRequestConfig
-  ): AxiosPromise<UserSettingsResponseModel> {
-    return userSettingsApi(this.configuration)
-      .updateUserSettings(params, options)
+  public async updateUserSettings(params: UserSettingsRequestModel): Promise<UserSettingsResponseModel> {
+    const result = await userSettingsApi(this.configuration)
+      .updateUserSettings(params)
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 
   // Version
-  public getVersion(options?: AxiosRequestConfig): AxiosPromise<number> {
-    return versionApi(this.configuration)
-      .getVersion(options)
+  public async getVersion(): Promise<number> {
+    const result = await versionApi(this.configuration)
+      .getVersion()
       .then((request) => request(this.axios, this.basePath));
+
+    if (result.status !== 200) {
+      throw new Error(result.statusText);
+    }
+
+    return result.data;
   }
 }
 
