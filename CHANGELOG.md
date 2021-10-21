@@ -1,6 +1,6 @@
 ## Node Tonic Changelog
 
-## 0.1.1 (October 20, 2021)
+## 0.2.0 (October 20, 2021)
 
 - Added SchemaDiff, PiiReport, GenerateData, and Privacy api methods
 - refactor of axios request params
