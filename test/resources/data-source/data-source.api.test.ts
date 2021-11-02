@@ -60,12 +60,11 @@ describe('dataSourceApi', () => {
       url: `${config.basePath}/api/DataSource?workspaceId=${workspaceId}`,
     };
 
-
     it('should return a promise that calls axios with the default parameters', async () => {
       const result = dataSourceApi(config).getDataSource(workspaceId);
       const axiosMock = stub<AxiosInstance>();
 
-      await result.then(result => result(axiosMock, config.basePath));
+      await result.then((result) => result(axiosMock, config.basePath));
 
       expect(axiosMock.request).toHaveBeenCalledWith(defaultRequestParameters);
     });
@@ -87,12 +86,11 @@ describe('dataSourceApi', () => {
       url: `${config.basePath}/api/DataSource/minimal?workspaceId=${workspaceId}`,
     };
 
-
     it('should return a promise that calls axios with the default parameters', async () => {
       const result = dataSourceApi(config).getDataSourceMinimal(workspaceId);
       const axiosMock = stub<AxiosInstance>();
 
-      await result.then(result => result(axiosMock, config.basePath));
+      await result.then((result) => result(axiosMock, config.basePath));
 
       expect(axiosMock.request).toHaveBeenCalledWith(defaultRequestParameters);
     });
