@@ -9,7 +9,7 @@ import { Table } from './resources/collection/collection.api.types';
 import { generateDataApi } from './resources/generate-data/generate-data.api';
 import { IdModel, JobScanModel, StrictMode } from './resources/generate-data/generate-data.api.types';
 import { privacyApi } from './resources/privacy/privacy.api';
-import { IgnorePrivacyPostParams, PiiTypeForColumnsResponse, SetPrivacyPostParams } from './resources/privacy/privacy.api.types';
+import { IgnorePrivacyPostParams, PiiTypeForColumnsResponse, PrivacyForColumnsResponse, SetPrivacyPostParams } from './resources/privacy/privacy.api.types';
 import {
   ResolveMultipleSchemaDiffParams,
   ResolveSchemaDiffParams,
@@ -137,10 +137,10 @@ class Tonic {
     return this.handleRequest<string>(request);
   }
 
-  public async getPrivacyForColumns(workspaceId: string): Promise<string> {
+  public async getPrivacyForColumns(workspaceId: string): Promise<PrivacyForColumnsResponse[]> {
     const request = await privacyApi(this.configuration).getPrivacyForColumns({ workspaceId });
 
-    return this.handleRequest<string>(request);
+    return this.handleRequest<PrivacyForColumnsResponse[]>(request);
   }
 
   public async getPiiTypeForColumns(workspaceId: string): Promise<PiiTypeForColumnsResponse[]> {

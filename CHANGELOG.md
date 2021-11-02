@@ -3,7 +3,7 @@
 ## 0.3.0 (Nov 2, 2021)
 
 - Added GetDataSource and GetDataSourceMinimal
-- Typed response from getPiiTypeForColumns
+- Typed response from getPiiTypeForColumns and getPrivacyTypeForColumns
 
 ## 0.2.0 (October 20, 2021)
 

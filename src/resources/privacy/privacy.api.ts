@@ -13,6 +13,7 @@ import {
   SetPrivacyPostParams,
   PrivacyAPI,
   PiiTypeForColumnsResponse,
+  PrivacyForColumnsResponse,
 } from './privacy.api.types';
 
 const privacyApiRequestArgsCreator = (configuration: Configuration): PrivacyAPIRequestArgsCreator => {
@@ -81,13 +82,13 @@ const privacyApi = (configuration: Configuration): PrivacyAPI => {
     async getPrivacyForColumns(
       params: PrivacyForColumnsParams,
       options?: AxiosRequestConfig
-    ): Promise<(axios: AxiosInstance, basePath: string) => AxiosPromise<string>> {
+    ): Promise<(axios: AxiosInstance, basePath: string) => AxiosPromise<PrivacyForColumnsResponse[]>> {
       const requestAxiosArgs = await privacyApiRequestArgsCreator(configuration).getGetPrivacyForColumnsRequestArgs(
         params,
         options
       );
 
-      return (axios: AxiosInstance = globalAxios, basePath: string): AxiosPromise<string> => {
+      return (axios: AxiosInstance = globalAxios, basePath: string): AxiosPromise<PrivacyForColumnsResponse[]> => {
         const axiosRequestArgs = { ...requestAxiosArgs.options, url: basePath + requestAxiosArgs.url };
 
         return axios.request(axiosRequestArgs);
