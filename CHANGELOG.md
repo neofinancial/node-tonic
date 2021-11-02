@@ -1,5 +1,10 @@
 ## Node Tonic Changelog
 
+## 0.3.0 (Nov 2, 2021)
+
+- Added GetDataSource and GetDataSourceMinimal
+- Typed response from getPiiTypeForColumns
+
 ## 0.2.0 (October 20, 2021)
 
 - Added SchemaDiff, PiiReport, GenerateData, and Privacy api methods
