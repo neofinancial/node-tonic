@@ -11,8 +11,8 @@ export type IgnorePrivacyPostParams =
   paths['/api/Privacy/ignore']['post']['requestBody']['content']['application/json'];
 export type SetPrivacyPostParams = paths['/api/Privacy/set']['post']['requestBody']['content']['application/json'];
 
-export type PiiTypeForColumnsResponse = { table: string; column: string; piiType: string; }
-export type PrivacyForColumnsResponse = { table: string; column: string; privacyType: string; }
+export type PiiTypeForColumnsResponse = { table: string; column: string; piiType: string };
+export type PrivacyForColumnsResponse = { table: string; column: string; privacyType: string };
 
 type PrivacyAPIRequestArgsCreator = {
   getGetPrivacyHistoryRequestArgs: (params: PrivacyHistoryParams, options?: AxiosRequestConfig) => Promise<RequestArgs>;

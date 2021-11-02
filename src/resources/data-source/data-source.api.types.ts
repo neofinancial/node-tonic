@@ -6,7 +6,7 @@ import { paths, components } from '../../types/tonic.types';
 export type GetDataSourceParams = paths['/api/DataSource']['get']['parameters']['query'];
 export type GetDataSourceMinimalParams = paths['/api/DataSource/minimal']['get']['parameters']['query'];
 
-export type DataSource = components['schemas']['AddDataSourceResponseModel']
+export type DataSource = components['schemas']['AddDataSourceResponseModel'];
 
 export type DataSourceAPI = {
   getDataSource: (
@@ -21,5 +21,8 @@ export type DataSourceAPI = {
 
 export type DataSourceAPIRequestArgsCreator = {
   getDataSourceRequestArgs: (params: GetDataSourceParams, options?: AxiosRequestConfig) => Promise<RequestArgs>;
-  getDataSourceMinimalRequestArgs: (params: GetDataSourceMinimalParams, options?: AxiosRequestConfig) => Promise<RequestArgs>;
+  getDataSourceMinimalRequestArgs: (
+    params: GetDataSourceMinimalParams,
+    options?: AxiosRequestConfig
+  ) => Promise<RequestArgs>;
 };
