@@ -9,7 +9,12 @@ import { Table } from './resources/collection/collection.api.types';
 import { generateDataApi } from './resources/generate-data/generate-data.api';
 import { IdModel, JobScanModel, StrictMode } from './resources/generate-data/generate-data.api.types';
 import { privacyApi } from './resources/privacy/privacy.api';
-import { IgnorePrivacyPostParams, SetPrivacyPostParams } from './resources/privacy/privacy.api.types';
+import {
+  IgnorePrivacyPostParams,
+  PiiTypeForColumnsResponse,
+  PrivacyForColumnsResponse,
+  SetPrivacyPostParams,
+} from './resources/privacy/privacy.api.types';
 import {
   ResolveMultipleSchemaDiffParams,
   ResolveSchemaDiffParams,
@@ -20,6 +25,8 @@ import {
 import { schemaDiffApi } from './resources/schema-diff/schema-diff.api';
 import { piiReportApi } from './resources/pii-report/pii-report.api';
 import { PiiReportRun } from './resources/pii-report/pii-report.api.types';
+import { DataSource } from './resources/data-source/data-source.api.types';
+import { dataSourceApi } from './resources/data-source/data-source.api';
 
 export interface RequestArgs {
   url: string;
@@ -83,6 +90,19 @@ class Tonic {
     return this.handleRequest<unknown>(request);
   }
 
+  // DataSource
+  public async getDataSource(workspaceId: string): Promise<DataSource> {
+    const request = await dataSourceApi(this.configuration).getDataSource(workspaceId);
+
+    return this.handleRequest<DataSource>(request);
+  }
+
+  public async getDataSourceMinimal(workspaceId: string): Promise<DataSource> {
+    const request = await dataSourceApi(this.configuration).getDataSourceMinimal(workspaceId);
+
+    return this.handleRequest<DataSource>(request);
+  }
+
   //PiiReport
   public async getMostRecentActiveOrCompletedPiiReport(workspaceId: string): Promise<JobScanModel> {
     const request = await piiReportApi(this.configuration).getMostRecentActiveOrCompletedPiiReport({ workspaceId });
@@ -121,16 +141,16 @@ class Tonic {
     return this.handleRequest<string>(request);
   }
 
-  public async getPrivacyForColumns(workspaceId: string): Promise<string> {
+  public async getPrivacyForColumns(workspaceId: string): Promise<PrivacyForColumnsResponse[]> {
     const request = await privacyApi(this.configuration).getPrivacyForColumns({ workspaceId });
 
-    return this.handleRequest<string>(request);
+    return this.handleRequest<PrivacyForColumnsResponse[]>(request);
   }
 
-  public async getPiiTypeForColumns(workspaceId: string): Promise<string> {
+  public async getPiiTypeForColumns(workspaceId: string): Promise<PiiTypeForColumnsResponse[]> {
     const request = await privacyApi(this.configuration).getPiiTypeForColumns({ workspaceId });
 
-    return this.handleRequest<string>(request);
+    return this.handleRequest<PiiTypeForColumnsResponse[]>(request);
   }
 
   public async ignorePrivacy(params: IgnorePrivacyPostParams): Promise<string> {

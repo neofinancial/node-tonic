@@ -51,8 +51,8 @@ Here is a list of all the Tonic.ai API endpoints along with the corresponding li
 | `/Comments`                                                     | Not Implemented                         |
 | `/Comments/{commentId}`                                         | Not Implemented                         |
 | _DataSource_                                                    |
-| `/DataSource`                                                   | Not Implemented                         |
-| `/DataSource/minimal`                                           | Not Implemented                         |
+| `/DataSource`                                                   | getDataSource                           |
+| `/DataSource/minimal`                                           | getDataSourceMinimal                    |
 | `/DataSource/source_db`                                         | Not Implemented                         |
 | `/DataSource/destination_db`                                    | Not Implemented                         |
 | `/DataSource/spark_connection_info`                             | Not Implemented                         |
@@ -75,12 +75,12 @@ Here is a list of all the Tonic.ai API endpoints along with the corresponding li
 | `/PiiReport/start`                                              | startPiiReport                          |
 | `/PiiReport`                                                    | getPiiReport                            |
 | _Privacy_                                                       |
-| `/Privacy/history`                                              | Not Implemented                         |
-| `/Privacy/privacyforcolumns`                                    | Not Implemented                         |
-| `/Privacy/piitypeforcolumns`                                    | Not Implemented                         |
-| `/Privacy/ignore`                                               | Not Implemented                         |
-| `/Privacy/set`                                                  | Not Implemented                         |
-| `/Privacy/suggestions`                                          | Not Implemented                         |
+| `/Privacy/history`                                              | getPrivacyHistory                       |
+| `/Privacy/privacyforcolumns`                                    | getPrivacyForColumns                    |
+| `/Privacy/piitypeforcolumns`                                    | getPiiTypeForColumns                    |
+| `/Privacy/ignore`                                               | ignorePrivacy                           |
+| `/Privacy/set`                                                  | setPrivacy                              |
+| `/Privacy/suggestions`                                          | getPrivacySuggestions                   |
 | _SchemaDiff_                                                    |
 | `/SchemaDiff`                                                   | getSchemaDiff                           |
 | `/SchemaDiff/resolve`                                           | resolveSchemaDiff                       |
